@@ -36,19 +36,13 @@ export default function Messenger() {
             userEmail: userData[key]?.userEmail,
           });
           set(ref(db, `/friends${userData[key]?.userId}/${user?.uid}`), {
-            userId: userData[key]?.userId,
+            userId: user.displayName,
             userName: userData[key]?.userName,
             userEmail: userData[key]?.userEmail,
           });
           set(ref(db, `/chat${userData[key]?.userId}/`), {
             create: user?.displayName,
-            message: [
-              { chatName: user?.displayName, mss: "Add succesfull" },
-              { chatName: user?.displayName, mss: "Add succesfull" },
-              { chatName: user?.displayName, mss: "Add succesfull" },
-              { chatName: user?.displayName, mss: "Add succesfull" },
-              { chatName: user?.displayName, mss: "Add succesfull" },
-            ],
+            message: [{ chatName: user?.displayName, mss: "Add succesfull" }],
           });
         }
       }
@@ -83,7 +77,7 @@ export default function Messenger() {
   console.log(showChat);
   return (
     <>
-      <section className="h-[80vh] mt-4 flex gap-4 max-w-[1000px] mx-auto bg-slate-600">
+      <section className="h-[80vh] mt-4 flex gap-4 max-w-[1000px] mx-auto ">
         {/* friends */}
         <div className="text-xl w-72 ">
           <h1>Friends</h1>
@@ -102,14 +96,17 @@ export default function Messenger() {
         </div>
         {/* chats */}
         <div className="w-full relative">
-          <div className="flex border-2 bg-orange-300">
+          <div className="flex">
             <input
+              className="border-2"
               value={searchFriend}
               onChange={(e) => setSearchFriend(e.target.value)}
               type="text"
               placeholder="search friend"
             />
-            <button onClick={addFriend}>Add Friend</button>
+            <button className="bg-orange-300" onClick={addFriend}>
+              Add Friend
+            </button>
           </div>
           {xChat?.map((item, i) =>
             item.chatName === user.displayName ? (
