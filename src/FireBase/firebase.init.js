@@ -11,6 +11,7 @@ const firebaseConfig = {
   messagingSenderId: "455927878333",
   appId: "1:455927878333:web:a7eb711cb2fe9c5dda5dd4",
   measurementId: "G-RQ77Q4CGTL",
+  databaseURL: "https://fir-project1-c060b-default-rtdb.firebaseio.com",
   //   apiKey: process.env.FIREBASE_API_KEY,
   //   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
   //   databaseURL: process.env.FIREBASE_DATABASE_URL,
@@ -21,7 +22,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 const auth = getAuth(app);
 export default auth;

@@ -9,8 +9,9 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import auth from "./FireBase/firebase.init";
+import auth, { app } from "./FireBase/firebase.init";
 import { useEffect, useState } from "react";
+import { getDatabase, ref, set } from "firebase/database";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -42,6 +43,21 @@ function App() {
       unSubscribe();
     };
   }, []);
+  useEffect(() => {
+    if (user?.emailVerified) {
+      const db = getDatabase(app);
+      set(ref(db, `/users/${user?.uid}`), {
+        userId: user?.uid,
+        userName: user?.displayName,
+        userEmail: user?.email,
+      });
+      // set(ref(db, `/demo/${user?.uid}`), {
+      //   userId: user?.uid,
+      //   userName: user?.displayName,
+      //   userEmail: user?.email,
+      // });
+    }
+  }, [user]);
   return (
     <FireBaseContext.Provider
       value={{
@@ -61,7 +77,7 @@ function App() {
         {/* layout */}
         <Nav />
         {/* <Home /> */}
-        <Link to={"/messenger"}>Messenger</Link>
+
         <Outlet />
       </>
     </FireBaseContext.Provider>

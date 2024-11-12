@@ -7,6 +7,7 @@ import Home from "./components/Home.jsx";
 import SignUp from "./components/SignUp.jsx";
 import SignIn from "./components/SignIn.jsx";
 import PrivetRoute from "./components/PrivetRoute.jsx";
+import Messenger from "./components/Messenger/Messenger.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
             path: "/messenger",
             element: (
               <PrivetRoute>
-                <h1>Messenger</h1>
+                <Messenger />
               </PrivetRoute>
             ),
           },
