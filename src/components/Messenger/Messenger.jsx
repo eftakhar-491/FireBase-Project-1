@@ -36,8 +36,8 @@ export default function Messenger() {
             userEmail: userData[key]?.userEmail,
           });
           set(ref(db, `/friends${userData[key]?.userId}/${user?.uid}`), {
-            userId: user.displayName,
-            userName: userData[key]?.userName,
+            userId: userData[key]?.userId,
+            userName: user.displayName,
             userEmail: userData[key]?.userEmail,
           });
           set(ref(db, `/chat${userData[key]?.userId}/`), {
