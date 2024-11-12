@@ -80,7 +80,7 @@ export default function Messenger() {
       { chatName: user?.displayName, mss: sendMessageData },
     ]);
   }
-  //   console.log(showChat);
+  console.log(showChat);
   return (
     <>
       <section className="h-[80vh] mt-4 flex gap-4 max-w-[1000px] mx-auto bg-slate-600">
@@ -111,9 +111,13 @@ export default function Messenger() {
             />
             <button onClick={addFriend}>Add Friend</button>
           </div>
-          {xChat?.map((item, i) => (
-            <div key={i + i}>{item.mss}</div>
-          ))}
+          {xChat?.map((item, i) =>
+            item.chatName === user.displayName ? (
+              <div className="text-right">{item.mss}</div>
+            ) : (
+              <div key={i + i}>{item.mss}</div>
+            )
+          )}
           {/* <div>asdf</div>
           <div className="text-right">asdf</div> */}
 
